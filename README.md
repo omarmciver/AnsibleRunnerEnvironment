@@ -1,4 +1,4 @@
-# Ansible Environment in Docker
+# Ansible Environment in Docker for Azure
 Originally created by **Omar McIver** on 18th September 2021
 
 - [LinkedIn](https://www.linkedin.com/in/omarmciver/)
@@ -6,6 +6,10 @@ Originally created by **Omar McIver** on 18th September 2021
 - [Blog](https://www.omarmciver.com/)
 
 If you want to have playbooks pre-loaded, ensure you copy files in to the /home/ folder before building the docker image.
+
+Here is a complete video covering the Ansible Runner Docker Environment for Azure, how it is constructed and how to use it...
+
+[![Ansible Runner Docker Environment for Azure - Deep Dive and Demo](https://img.youtube.com/vi/rM7ZiaJkYEI/0.jpg)](https://www.youtube.com/watch?v=rM7ZiaJkYEI)
 
 ## Build the docker image
 ```
