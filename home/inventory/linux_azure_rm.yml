@@ -1,0 +1,22 @@
+# This filename must end with azure_rm.yml so that Ansible knows how to use it correctly.
+# See https://docs.microsoft.com/en-us/azure/developer/ansible/dynamic-inventory-configure?tabs=azure-cli
+# and https://docs.ansible.com/ansible/2.3/guide_azure.html#dynamic-inventory-script
+plugin: azure_rm
+auth_source: auto
+
+include_vm_resource_groups:
+  - "*"
+
+exclude_host_filters:
+  - powerstate != 'running'
+  - os_disk.operating_system_type != 'linux'
+
+conditional_groups:
+  linux_hosts: "'aks' not in name"
+  aks_linux_hosts: "'aks' in name"
+
+hostvar_expressions:
+  ansible_host: private_ipv4_addresses | first
+  azure_region: location
+  azure_rg: resource_group
+

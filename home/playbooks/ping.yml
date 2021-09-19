@@ -1,0 +1,7 @@
+- name: Ping all linux hosts
+  gather_facts: true
+  hosts: linux_hosts
+  tasks:
+    - name: "Ping"
+      action: ping
+

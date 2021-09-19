@@ -1,0 +1,30 @@
+#!/bin/bash
+# push-public-ssh-key
+# Omar McIver 2021.09.13
+# Linux VM support
+
+echo "This will push the SSH public key taken from the Key Vault $SUB \ $AKV \ Secrets \ $PUB to to a given Azure Virtual Machine."
+echo "Machine Name (in Azure):"
+read name
+
+name=${name,,}
+
+echo "User Name (will be created as sudoer by Azure if not already existing):"
+read uname
+
+uname=${uname,,}
+
+vm_subscriptionId=`az graph query -q "where type =~ 'Microsoft.compute/virtualmachines' and name =~ '$name' | project subscriptionId" --query data[0].subscriptionId -o tsv`
+vm_subscriptionId=${vm_subscriptionId,,}
+
+rg=`az graph query -q "where type =~ 'Microsoft.compute/virtualmachines' and name =~ '$name' | project resourceGroup" -s $vm_subscriptionId --query data[0].resourceGroup -o tsv`
+rg=${rg,,}
+
+echo "VM Found: $name"
+echo "Subscription ID: $vm_subscriptionId"
+echo "Resource Group: $rg"
+
+echo "Installing SSH key..."
+az vm user update -u "$uname" -n "$name" -g "$rg" --ssh-key-value "$(< $SSH_HOME/public-ssh)"
+
+echo "Done - now try to SSH again..."

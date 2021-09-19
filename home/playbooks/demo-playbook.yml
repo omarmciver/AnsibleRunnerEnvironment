@@ -1,0 +1,20 @@
+- name: Install Apache on all Linux hosts
+  gather_facts: true
+  hosts: linux_hosts
+  tasks:
+    - name: Install apache packages
+      apt:
+        name: apache2
+        state: present
+        update_cache: yes
+      become: yes
+    - name: ensure httpd is running
+      service:
+        name: apache2
+        state: started
+      become: yes
+    - name: Set the index file context
+      ansible.builtin.template:
+        src: files/index.html.j2
+        dest: /var/www/html/index.html
+      become: yes
