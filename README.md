@@ -1,6 +1,8 @@
 # Ansible Environment in Docker for Azure
 Originally created by **Omar McIver** on 18th September 2021
 
+***If you'd like to see this expanded to become more of a Cloud Runner Swiss-Army tool, consider supporting my [Cloud Runner Environment in Docker](https://github.com/omarmciver/CRED) project.***
+
 - [LinkedIn](https://www.linkedin.com/in/omarmciver/)
 - [YouTube](https://www.youtube.com/c/OmarMcIver/)
 - [Blog](https://www.omarmciver.com/)
